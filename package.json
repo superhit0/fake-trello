@@ -1,0 +1,23 @@
+{
+  "name": "fake-trello",
+  "version": "1.0.0",
+  "description": "Fake Trello App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superhit0/fake-trello.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/superhit0/fake-trello/issues"
+  },
+  "homepage": "https://github.com/superhit0/fake-trello#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
