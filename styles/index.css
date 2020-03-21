@@ -13,8 +13,12 @@ body {
 
 .app-container {
     display: flex;
+    justify-content: flex-start;
     height: 100%;
-    align-items: center;
+}
+.app-list-container {
+    height: 100%;
+    background-color: white;
 }
 .add-list-container {
     width: 100px;
@@ -26,4 +30,5 @@ body {
     font-size: 100px;
     border-radius: 50px;
     margin-left: 5px;
+    align-self: center;
 }

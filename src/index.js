@@ -1,3 +1,4 @@
 const App = require('./models/App');
-const app = new App();
-document.getElementById('root').appendChild(app.getHtmlElement());
+const appContainer = document.getElementById('root');
+const app = new App(appContainer);
+appContainer.appendChild(app.getHtmlElement());
