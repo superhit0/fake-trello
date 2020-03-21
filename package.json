@@ -22,6 +22,10 @@
   },
   "homepage": "https://github.com/superhit0/fake-trello#readme",
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.0",
+    "babel-loader": "^8.1.0",
     "live-server": "^1.2.1",
     "npm-run-all": "^4.1.5",
     "webpack": "^4.42.0",

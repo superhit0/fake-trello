@@ -11,7 +11,7 @@ class List {
 
   removeItself = () => {
     this.removeList(this.parentIndex);
-  }
+  };
 
   calculateHtmlElement() {
     const element = document.createElement('div');

@@ -14,7 +14,7 @@ class App{
     this.lists.splice(index, 1);
 
     return removeList;
-  }
+  };
 
   addList(listName) {
     const newList = new List(listName, this.lists.length, this.listContainer, this.removeList);
