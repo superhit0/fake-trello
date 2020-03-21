@@ -32,7 +32,13 @@ body {
     border-radius: 50px;
     margin-left: 5px;
     align-self: center;
+    cursor: pointer;
 }
+
+.add-list-container:hover {
+    background-color: #a2d8ef;
+}
+
 .list-container {
     display: flex;
     flex-direction: column;
@@ -43,30 +49,52 @@ body {
     border-radius: 5px;
 }
 
-.list-header {
+.list-header, .list-footer {
     display: flex;
     flex-direction: row;
     font-size: 2rem;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.list-header {
     margin-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 .list-name {
     flex-grow: 1;
     font-weight: bold;
 }
-.list-delete-container {
+.list-delete-container, .list-add-container {
     background-color: rgb(229, 235, 245);
+    border-radius: 5px;
     border: 0;
     padding: 0;
 }
-.list-delete {
+.list-delete, .list-add {
     font-size: 1.75rem;
 }
 
 .list-delete:hover {
     border-radius: 10%;
     cursor: pointer;
-    background-color: #c1c1c1;
+    background-color: #a2d8ef;
+}
+
+.list-footer {
+    margin-bottom: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.list-footer:hover, .list-footer:hover .list-add-container {
+    cursor: pointer;
+    background-color: #a2d8ef;
+}
+
+.list-footer-note {
+    font-size: 1.25rem;
+    align-self: center;
+    opacity: 0.5;
 }

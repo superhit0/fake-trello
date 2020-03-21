@@ -16,11 +16,11 @@ class App{
     return removeList;
   };
 
-  addList(listName) {
+  addList = (listName) => {
     const newList = new List(listName, this.lists.length, this.listContainer, this.removeList);
     this.listContainer.appendChild(newList.getHtmlElement());
     return this.lists.push(newList);
-  }
+  };
 
   getAddHtmlElement() {
     const element = document.createElement('div');
