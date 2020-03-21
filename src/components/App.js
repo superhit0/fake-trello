@@ -1,14 +1,14 @@
 const List = require('./List');
 
 class App{
-  constructor(container) {
-    this.lists = [];
+  constructor(container, lists = []) {
+    this.lists = lists;
     this.parentContainer = container;
     this.listContainer = null;
     this.htmlElement = null;
   }
 
-  removeList(index) {
+  removeList = (index) => {
     const removeList = this.lists[index];
     this.listContainer.removeChild(removeList.getHtmlElement());
     this.lists.splice(index, 1);
@@ -17,7 +17,7 @@ class App{
   }
 
   addList(listName) {
-    const newList = new List(listName, this.lists.length, this.listContainer);
+    const newList = new List(listName, this.lists.length, this.listContainer, this.removeList);
     this.listContainer.appendChild(newList.getHtmlElement());
     return this.lists.push(newList);
   }
@@ -38,7 +38,7 @@ class App{
     const appListContainer = document.createElement('div');
     appListContainer.classList.add('app-list-container');
     this.listContainer = appListContainer;
-    this.lists.forEach(list => element.appendChild(list.getHtmlElement()));
+    this.lists.forEach(list => appListContainer.appendChild(list.getHtmlElement()));
     element.appendChild(appListContainer);
 
     const addHtmlElement = this.getAddHtmlElement();

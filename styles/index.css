@@ -17,9 +17,10 @@ body {
     height: 100%;
 }
 .app-list-container {
-    height: 100%;
-    background-color: white;
+    margin: 5px;
+    padding: 5px;
 }
+
 .add-list-container {
     width: 100px;
     height: 100px;
@@ -31,4 +32,41 @@ body {
     border-radius: 50px;
     margin-left: 5px;
     align-self: center;
+}
+.list-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 300px;
+    background-color: rgb(229, 235, 245);
+    height: 100%;
+    border-radius: 5px;
+}
+
+.list-header {
+    display: flex;
+    flex-direction: row;
+    font-size: 2rem;
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.list-name {
+    flex-grow: 1;
+    font-weight: bold;
+}
+.list-delete-container {
+    background-color: rgb(229, 235, 245);
+    border: 0;
+    padding: 0;
+}
+.list-delete {
+    font-size: 1.75rem;
+}
+
+.list-delete:hover {
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: #c1c1c1;
 }
