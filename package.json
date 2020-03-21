@@ -7,6 +7,7 @@
     "build": "npx webpack",
     "build:watch": "npx webpack -w",
     "live-server": "npx live-server",
+    "start": "npx live-server",
     "dev": "run-p build:watch live-server"
   },
   "repository": {
