@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx webpack",
     "build:watch": "npx webpack -w",
-    "live-server": "npx live-server",
+    "live-server": "npx live-server --wait=200 --ignore=src",
     "start": "npx live-server",
     "dev": "run-p build:watch live-server"
   },

@@ -1,6 +1,7 @@
 body {
     margin: 0;
 }
+
 #root {
     width: 100vw;
     height: 100vh;
@@ -10,6 +11,19 @@ body {
     background-color: aqua;
 }
 
-#app-container {
+.app-container {
     display: flex;
+    height: 100%;
+    align-items: center;
+}
+.add-list-container {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    line-height: 100px;
+    text-align: center;
+    color: cornflowerblue;
+    font-size: 100px;
+    border-radius: 50px;
+    margin-left: 5px;
 }
