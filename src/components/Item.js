@@ -20,12 +20,12 @@ class Item {
 
   getHeaderElement = () => {
     const classNames = {
-      deleteContainer: 'list-delete-container',
-      del: 'list-delete',
-      editContainer: 'list-edit-container',
-      edit: 'list-edit',
-      element: 'list-header',
-      label: 'list-name'
+      deleteContainer: 'list-item-delete-container',
+      del: 'list-item-delete',
+      editContainer: 'list-item-edit-container',
+      edit: 'list-item-edit',
+      element: 'list-item-header',
+      label: 'list-item-name'
     };
     const listHeader = new Header(this.itemName, this.removeItem, classNames, this.editItem);
     return listHeader.getHtmlElement();
@@ -35,14 +35,13 @@ class Item {
     const element = document.createElement('div');
     element.classList.add('list-item-container');
 
-    const listHeaderElement = this.getHeaderElement();
-    element.appendChild(listHeaderElement);
+    const itemHeaderElement = this.getHeaderElement();
+    element.appendChild(itemHeaderElement);
 
-    // const element = document.createElement('div');
-    // element.classList.add('list-container');
-    //
-    // const element = document.createElement('div');
-    // element.classList.add('list-container');
+    const itemDescriptionElement = document.createElement('p');
+    itemDescriptionElement.classList.add('list-item-description');
+    itemDescriptionElement.innerHTML = this.itemDescription;
+    element.appendChild(itemDescriptionElement);
 
     this.htmlElement = element;
   }

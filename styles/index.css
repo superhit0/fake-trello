@@ -49,13 +49,14 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-width: 300px;
+    max-width: 300px;
     background-color: rgb(229, 235, 245);
     height: 100%;
     border-radius: 5px;
     margin: 2px;
 }
 
-.list-header, .list-footer {
+.list-header, .list-footer, .list-item-header {
     display: flex;
     flex-direction: row;
     font-size: 2rem;
@@ -67,26 +68,33 @@ body {
     margin-top: 15px;
 }
 
-.list-name {
+.list-name, .list-item-name {
     flex-grow: 1;
     font-weight: bold;
 }
-.list-delete-container, .list-add-container, .list-edit-container {
-    background-color: rgb(229, 235, 245);
+
+.list-delete-container, .list-add-container, .list-edit-container, .list-item-edit-container, .list-item-delete-container {
     border-radius: 5px;
     border: 0;
     padding: 0;
     margin-left: 8px;
 }
+.list-delete-container, .list-add-container, .list-edit-container {
+    background-color: rgb(229, 235, 245);
+}
 .list-delete, .list-add {
     font-size: 1.75rem;
+}
+
+.list-item-edit-container, .list-item-delete-container {
+    background-color: white;
 }
 
 .list-edit {
     font-size: 1.25rem;
 }
 
-.list-delete:hover, .list-edit:hover {
+.list-delete:hover, .list-edit:hover, .list-item-delete:hover, .list-item-edit:hover {
     border-radius: 10%;
     cursor: pointer;
     background-color: #a2d8ef;
@@ -114,4 +122,30 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     flex-grow: 1;
+}
+
+.list-item-container, .list-item-description {
+    background-color: white;
+    margin: 15px;
+    border-radius: 5px;
+}
+.list-item-name {
+    font-size: 1.25rem;
+    align-self: center;
+}
+
+.list-item-header {
+    margin-top: 5px;
+}
+
+.list-item-edit, .list-item-delete {
+    font-size: 1.25rem;
+}
+
+.list-item-description {
+    font-size: 1rem;
+    overflow-wrap: break-word;
+}
+.list-item-container {
+    cursor: pointer;
 }
