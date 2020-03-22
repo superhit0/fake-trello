@@ -58,8 +58,23 @@ class List {
     this.htmlElement = null;
   };
 
+  moveItemToListAt = (item, index = Number.MAX_SAFE_INTEGER) => {
+    item.removeItemAt = this.removeItem;
+    item.parentContainer = this.itemsContainer;
+    item.parentRef = this;
+    if (this.items.length <= index) {
+      this.itemsContainer.appendChild(item.getHtmlElement());
+      this.items.push(item);
+    } else {
+
+    }
+  };
+
   dragOverFunc = (event) => {
-    // console.log(dragStore);
+    dragStore.data.end = {
+      parent: this,
+      itemIndex: 1000
+    };
   };
 
   calculateHtmlElement = () => {
@@ -73,6 +88,7 @@ class List {
     const listItemsContainerElement = document.createElement('div');
     listItemsContainerElement.classList.add('list-items-container');
     element.appendChild(listItemsContainerElement);
+    this.items.forEach(item => listItemsContainerElement.appendChild(item.getHtmlElement()));
     this.itemsContainer = listItemsContainerElement;
 
     const listFooter = new ListFooter(this.addItem);

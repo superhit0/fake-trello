@@ -1,3 +1,5 @@
+const { reRender } = require('../framework');
+
 const listStore = {};
 const dragStore = {
   initializeStartDrag(item, parent) {
@@ -13,9 +15,12 @@ const dragStore = {
     };
   },
   initializeEndDrag() {
-    // const listIndex = listStore.lists.indexOf(this.data.start.parent);
-    // const itemIndex = listStore.lists[listIndex].items.indexOf();
-    // listStore.lists[this.data.start].items.splice(itemIndex, 1);
+    listStore.lists[this.data.start.listIndex].items.splice(this.data.start.itemIndex, 1);
+    const endList = this.data.end.parent;
+    endList.moveItemToListAt(this.data.start.item);
+
+    reRender.call(endList);
+    reRender.call(listStore.lists[this.data.start.listIndex]);
     delete this.data;
   },
 };
