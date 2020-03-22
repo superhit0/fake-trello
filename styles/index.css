@@ -17,6 +17,8 @@ body {
     height: 100%;
 }
 .app-list-container {
+    display: flex;
+    flex-direction: row;
     margin: 5px;
     padding: 5px;
 }
@@ -47,6 +49,7 @@ body {
     background-color: rgb(229, 235, 245);
     height: 100%;
     border-radius: 5px;
+    margin: 2px;
 }
 
 .list-header, .list-footer {

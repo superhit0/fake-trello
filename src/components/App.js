@@ -17,6 +17,7 @@ class App{
   };
 
   addList = (listName) => {
+    if(!listName) return;
     const newList = new List(listName, this.lists.length, this.listContainer, this.removeList);
     this.listContainer.appendChild(newList.getHtmlElement());
     return this.lists.push(newList);
@@ -25,6 +26,7 @@ class App{
   getAddHtmlElement() {
     const element = document.createElement('div');
     element.classList.add('add-list-container');
+    element.onclick = () => { this.addList(prompt('Enter new list name:')); }
     const iTag = document.createElement('i');
     iTag.className= "fas fa-plus-circle";
     element.appendChild(iTag);
