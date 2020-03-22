@@ -68,7 +68,7 @@ class App{
     }
 
     return this.htmlElement;
-  }
-};
+  };
+}
 
 module.exports = App;
