@@ -1,23 +1,16 @@
 const Header = require('./Header');
+const { reRender } = require('../framework');
 
 class Item {
-  constructor(itemName, itemDescription, parentContainer, removeItemAt, items = []) {
+  constructor(itemName, itemDescription, parentContainer, removeItemAt) {
     this.itemName = itemName;
     this.itemDescription = itemDescription;
     this.parentContainer = parentContainer;
     this.removeItemAt = removeItemAt;
-    this.items = items;
   }
 
   removeItem = () => {
     this.removeItemAt(this);
-  };
-
-  reRender = () => {
-    const oldElement = this.getHtmlElement();
-    this.destroyElementRef();
-    this.parentContainer.insertBefore(this.getHtmlElement(), oldElement);
-    this.parentContainer.removeChild(oldElement);
   };
 
   editItem = () => {
@@ -26,7 +19,7 @@ class Item {
     if(!name) return;
     this.itemName = name;
     this.itemDescription = description;
-    this.reRender();
+    reRender.call(this);
   };
 
   getHeaderElement = () => {

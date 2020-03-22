@@ -1,6 +1,7 @@
 const Header = require('./Header');
 const ListFooter = require('./ListFooter');
 const Item = require('./Item');
+const { reRender } = require('../framework');
 
 class List {
   constructor(listName, parentContainer, removeList, listItems = []) {
@@ -12,18 +13,11 @@ class List {
     this.removeList = removeList;
   }
 
-  reRender = () => {
-    const oldElement = this.getHtmlElement();
-    this.destroyElementRef();
-    this.parentContainer.insertBefore(this.getHtmlElement(), oldElement);
-    this.parentContainer.removeChild(oldElement);
-  };
-
   editList = () => {
     const name = prompt('Enter new Name of List: ' + this.listName + ": ");
     if(!name) return;
     this.listName = name;
-    this.reRender();
+    reRender.call(this);
   };
 
   removeItself = () => {
