@@ -1,12 +1,14 @@
 const Header = require('./Header');
 const { reRender } = require('../framework');
+const { dragStore } = require('../store');
 
 class Item {
-  constructor(itemName, itemDescription, parentContainer, removeItemAt) {
+  constructor(itemName, itemDescription, parentContainer, removeItemAt, parentRef) {
     this.itemName = itemName;
     this.itemDescription = itemDescription;
     this.parentContainer = parentContainer;
     this.removeItemAt = removeItemAt;
+    this.parentRef = parentRef;
   }
 
   removeItem = () => {
@@ -39,9 +41,22 @@ class Item {
     this.htmlElement = null;
   };
 
+  dragStartFunc = () => {
+    this.htmlElement.classList.add('draggable');
+    dragStore.initializeStartDrag(this, this.parentRef);
+  };
+
+  dragEndFunc = () => {
+    this.htmlElement.classList.remove('draggable');
+    dragStore.initializeEndDrag();
+  };
+
   calculateHtmlElement() {
     const element = document.createElement('div');
     element.classList.add('list-item-container');
+    element.draggable = true;
+    element.ondragstart = this.dragStartFunc;
+    element.ondragend = this.dragEndFunc;
 
     const itemHeaderElement = this.getHeaderElement();
     element.appendChild(itemHeaderElement);

@@ -1,4 +1,5 @@
 const List = require('./List');
+const { listStore } = require('../store');
 
 class App{
   constructor(container, lists = []) {
@@ -6,6 +7,7 @@ class App{
     this.parentContainer = container;
     this.listContainer = null;
     this.htmlElement = null;
+    listStore.lists = lists;
   }
 
   removeList = (element) => {

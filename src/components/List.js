@@ -2,6 +2,7 @@ const Header = require('./Header');
 const ListFooter = require('./ListFooter');
 const Item = require('./Item');
 const { reRender } = require('../framework');
+const { dragStore } = require('../store');
 
 class List {
   constructor(listName, parentContainer, removeList, listItems = []) {
@@ -34,7 +35,7 @@ class List {
   };
 
   addItem = (name, description) => {
-    const newItem = new Item(name, description, this.itemsContainer, this.removeItem);
+    const newItem = new Item(name, description, this.itemsContainer, this.removeItem, this);
     this.itemsContainer.appendChild(newItem.getHtmlElement());
     return this.items.push(newItem);
   };
@@ -57,9 +58,14 @@ class List {
     this.htmlElement = null;
   };
 
+  dragOverFunc = (event) => {
+    // console.log(dragStore);
+  };
+
   calculateHtmlElement = () => {
     const element = document.createElement('div');
     element.classList.add('list-container');
+    element.ondragover = this.dragOverFunc;
 
     const listHeaderElement = this.getHeaderElement(this.listName, this.removeItself);
     element.appendChild(listHeaderElement);
