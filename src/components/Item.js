@@ -13,8 +13,20 @@ class Item {
     this.removeItemAt(this);
   };
 
-  editItem = () => {
+  reRender = () => {
+    const oldElement = this.getHtmlElement();
+    this.destroyElementRef();
+    this.parentContainer.insertBefore(this.getHtmlElement(), oldElement);
+    this.parentContainer.removeChild(oldElement);
+  };
 
+  editItem = () => {
+    const name = prompt('Enter new Task:');
+    const description = prompt('Enter Task Description:');
+    if(!name) return;
+    this.itemName = name;
+    this.itemDescription = description;
+    this.reRender();
   };
 
   getHeaderElement = () => {
@@ -28,6 +40,10 @@ class Item {
     };
     const listHeader = new Header(this.itemName, this.removeItem, classNames, this.editItem);
     return listHeader.getHtmlElement();
+  };
+
+  destroyElementRef = () => {
+    this.htmlElement = null;
   };
 
   calculateHtmlElement() {
