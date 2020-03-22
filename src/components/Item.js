@@ -1,17 +1,16 @@
 const Header = require('./Header');
 
 class Item {
-  constructor(itemName, itemDescription, parentIndex, parentContainer, removeItem, items = []) {
+  constructor(itemName, itemDescription, parentContainer, removeItemAt, items = []) {
     this.itemName = itemName;
     this.itemDescription = itemDescription;
-    this.parentIndex = parentIndex;
     this.parentContainer = parentContainer;
-    this.removeItem = removeItem;
+    this.removeItemAt = removeItemAt;
     this.items = items;
   }
 
   removeItem = () => {
-
+    this.removeItemAt(this);
   };
 
   editItem = () => {

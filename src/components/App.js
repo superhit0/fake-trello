@@ -8,7 +8,8 @@ class App{
     this.htmlElement = null;
   }
 
-  removeList = (index) => {
+  removeList = (element) => {
+    const index = this.lists.indexOf(element);
     const removeList = this.lists[index];
     this.listContainer.removeChild(removeList.getHtmlElement());
     this.lists.splice(index, 1);
@@ -18,7 +19,7 @@ class App{
 
   addList = (listName) => {
     if(!listName) return;
-    const newList = new List(listName, this.lists.length, this.listContainer, this.removeList);
+    const newList = new List(listName, this.listContainer, this.removeList);
     this.listContainer.appendChild(newList.getHtmlElement());
     return this.lists.push(newList);
   };

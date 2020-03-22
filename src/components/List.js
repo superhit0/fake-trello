@@ -3,9 +3,8 @@ const ListFooter = require('./ListFooter');
 const Item = require('./Item');
 
 class List {
-  constructor(listName, parentIndex, parentContainer, removeList, listItems = []) {
+  constructor(listName, parentContainer, removeList, listItems = []) {
     this.listName = listName;
-    this.parentIndex = parentIndex;
     this.items = listItems;
     this.parentContainer = parentContainer;
     this.itemsContainer = null;
@@ -28,11 +27,20 @@ class List {
   };
 
   removeItself = () => {
-    this.removeList(this.parentIndex);
+    this.removeList(this);
+  };
+
+  removeItem = (element) => {
+    const index = this.items.indexOf(element);
+    const removeItem = this.items[index];
+    this.itemsContainer.removeChild(removeItem.getHtmlElement());
+    this.items.splice(index, 1);
+
+    return removeItem;
   };
 
   addItem = (name, description) => {
-    const newItem = new Item(name, description, this.items.length, this.htmlElement);
+    const newItem = new Item(name, description, this.itemsContainer, this.removeItem);
     this.itemsContainer.appendChild(newItem.getHtmlElement());
     return this.items.push(newItem);
   };
