@@ -68,17 +68,22 @@ body {
     flex-grow: 1;
     font-weight: bold;
 }
-.list-delete-container, .list-add-container {
+.list-delete-container, .list-add-container, .list-edit-container {
     background-color: rgb(229, 235, 245);
     border-radius: 5px;
     border: 0;
     padding: 0;
+    margin-left: 8px;
 }
 .list-delete, .list-add {
     font-size: 1.75rem;
 }
 
-.list-delete:hover {
+.list-edit {
+    font-size: 1.25rem;
+}
+
+.list-delete:hover, .list-edit:hover {
     border-radius: 10%;
     cursor: pointer;
     background-color: #a2d8ef;

@@ -1,4 +1,4 @@
-const ListHeader = require('./ListHeader');
+const Header = require('./Header');
 const ListFooter = require('./ListFooter');
 
 class List {
@@ -21,12 +21,25 @@ class List {
     return this.items.push(newItem);
   };
 
+  getHeaderElement(listName, removeItself) {
+    const classNames = {
+      deleteContainer: 'list-delete-container',
+      del: 'list-delete',
+      editContainer: 'list-edit-container',
+      edit: 'list-edit',
+      element: 'list-header',
+      label: 'list-name'
+    };
+
+    const listHeader = new Header(listName, removeItself, classNames);
+    return listHeader.getHtmlElement();
+  }
+
   calculateHtmlElement() {
     const element = document.createElement('div');
     element.classList.add('list-container');
 
-    const listHeader = new ListHeader(this.listName, this.removeItself);
-    const listHeaderElement = listHeader.getHtmlElement();
+    const listHeaderElement = this.getHeaderElement(this.listName, this.removeItself);
     element.appendChild(listHeaderElement);
 
     // const element = document.createElement('div');
