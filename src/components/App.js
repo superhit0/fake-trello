@@ -16,23 +16,9 @@ class App{
     return removeList;
   };
 
-  rerenderListAtIdx = (index) => {
-    const oldElement = this.lists[index].getHtmlElement();
-    this.lists[index].destroyElementRef();
-    this.listContainer.insertBefore(this.lists[index].getHtmlElement(), oldElement);
-    this.listContainer.removeChild(oldElement);
-  };
-
-  editListName = (index) => {
-    const name = prompt('Enter new Name of List: ' + this.lists[index].listName + ": ");
-    if(!name) return;
-    this.lists[index].setListName(name);
-    this.rerenderListAtIdx(index);
-  };
-
   addList = (listName) => {
     if(!listName) return;
-    const newList = new List(listName, this.lists.length, this.listContainer, this.removeList, this.editListName);
+    const newList = new List(listName, this.lists.length, this.listContainer, this.removeList);
     this.listContainer.appendChild(newList.getHtmlElement());
     return this.lists.push(newList);
   };

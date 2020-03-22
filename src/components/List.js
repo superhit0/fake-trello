@@ -2,22 +2,27 @@ const Header = require('./Header');
 const ListFooter = require('./ListFooter');
 
 class List {
-  constructor(listName, parentIndex, parentContainer, removeList, editListName, listItems = []) {
+  constructor(listName, parentIndex, parentContainer, removeList, listItems = []) {
     this.listName = listName;
     this.parentIndex = parentIndex;
     this.items = listItems;
     this.parentContainer = parentContainer;
     this.htmlElement = null;
     this.removeList = removeList;
-    this.editListName = editListName;
   }
 
-  setListName = (name) => {
-    this.listName = name;
+  reRender = () => {
+    const oldElement = this.getHtmlElement();
+    this.destroyElementRef();
+    this.parentContainer.insertBefore(this.getHtmlElement(), oldElement);
+    this.parentContainer.removeChild(oldElement);
   };
 
   editList = () => {
-    this.editListName(this.parentIndex);
+    const name = prompt('Enter new Name of List: ' + this.listName + ": ");
+    if(!name) return;
+    this.listName = name;
+    this.reRender();
   };
 
   removeItself = () => {
