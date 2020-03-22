@@ -62,18 +62,36 @@ class List {
     item.removeItemAt = this.removeItem;
     item.parentContainer = this.itemsContainer;
     item.parentRef = this;
-    if (this.items.length <= index) {
-      this.itemsContainer.appendChild(item.getHtmlElement());
+    if (this.items.length <= index || index<0) {
       this.items.push(item);
     } else {
-
+      this.items.splice(index, 0, item);
     }
   };
 
+  getDragIndex = (event) => {
+    const mouseY = event.clientY;
+    let index = this.items.length;
+    return this.items.reduce((closest, item, index) => {
+      const itemElement = item.getHtmlElement();
+      const box = itemElement.getBoundingClientRect();
+      const offSet = mouseY - box.top - (box.height/2);
+      if(offSet < 0 && offSet > closest.offSet){
+        return {
+          offSet,
+          index
+        }
+      } else {
+        return closest;
+      }
+    }, { offSet: Number.MIN_SAFE_INTEGER, index }).index;
+  };
+
   dragOverFunc = (event) => {
+    const itemIndex = this.getDragIndex(event);
     dragStore.data.end = {
       parent: this,
-      itemIndex: 1000
+      itemIndex
     };
   };
 

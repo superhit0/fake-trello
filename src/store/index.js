@@ -17,7 +17,7 @@ const dragStore = {
   initializeEndDrag() {
     listStore.lists[this.data.start.listIndex].items.splice(this.data.start.itemIndex, 1);
     const endList = this.data.end.parent;
-    endList.moveItemToListAt(this.data.start.item);
+    endList.moveItemToListAt(this.data.start.item, this.data.end.itemIndex);
 
     reRender.call(endList);
     reRender.call(listStore.lists[this.data.start.listIndex]);
