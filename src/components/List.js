@@ -89,10 +89,16 @@ class List {
 
   dragOverFunc = (event) => {
     const itemIndex = this.getDragIndex(event);
+    const item = dragStore.data.start.item;
     dragStore.data.end = {
       parent: this,
       itemIndex
     };
+    if (this.items.length <= itemIndex || itemIndex<0) {
+      this.itemsContainer.appendChild(item.getHtmlElement());
+    } else {
+      this.itemsContainer.insertBefore(item.getHtmlElement(), this.items[itemIndex].getHtmlElement());
+    }
   };
 
   calculateHtmlElement = () => {
