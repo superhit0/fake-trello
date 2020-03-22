@@ -1,2 +1,2 @@
-# fake-trello
+# Fake-Trello
 Fake Trello App
