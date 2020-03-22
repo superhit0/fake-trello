@@ -1,5 +1,6 @@
 const Header = require('./Header');
 const ListFooter = require('./ListFooter');
+const Item = require('./Item');
 
 class List {
   constructor(listName, parentIndex, parentContainer, removeList, listItems = []) {
@@ -7,6 +8,7 @@ class List {
     this.parentIndex = parentIndex;
     this.items = listItems;
     this.parentContainer = parentContainer;
+    this.itemsContainer = null;
     this.htmlElement = null;
     this.removeList = removeList;
   }
@@ -30,8 +32,8 @@ class List {
   };
 
   addItem = (name, description) => {
-    const newItem = new Item(name, description, this.lists.length, this.htmlElement);
-    this.htmlElement.appendChild(newItem.getHtmlElement());
+    const newItem = new Item(name, description, this.items.length, this.htmlElement);
+    this.itemsContainer.appendChild(newItem.getHtmlElement());
     return this.items.push(newItem);
   };
 
@@ -60,10 +62,12 @@ class List {
     const listHeaderElement = this.getHeaderElement(this.listName, this.removeItself);
     element.appendChild(listHeaderElement);
 
-    // const element = document.createElement('div');
-    // element.classList.add('list-container');
-    //
-    const listFooter = new ListFooter()
+    const listItemsContainerElement = document.createElement('div');
+    listItemsContainerElement.classList.add('list-items-container');
+    element.appendChild(listItemsContainerElement);
+    this.itemsContainer = listItemsContainerElement;
+
+    const listFooter = new ListFooter(this.addItem);
     const listFooterElement = listFooter.getHtmlElement();
     element.appendChild(listFooterElement);
 

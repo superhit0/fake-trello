@@ -107,3 +107,9 @@ body {
     align-self: center;
     opacity: 0.5;
 }
+.list-items-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
