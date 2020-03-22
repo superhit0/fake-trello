@@ -2,14 +2,23 @@ const Header = require('./Header');
 const ListFooter = require('./ListFooter');
 
 class List {
-  constructor(listName, parentIndex, parentContainer, removeList, listItems = []) {
+  constructor(listName, parentIndex, parentContainer, removeList, editListName, listItems = []) {
     this.listName = listName;
     this.parentIndex = parentIndex;
     this.items = listItems;
     this.parentContainer = parentContainer;
     this.htmlElement = null;
     this.removeList = removeList;
+    this.editListName = editListName;
   }
+
+  setListName = (name) => {
+    this.listName = name;
+  };
+
+  editList = () => {
+    this.editListName(this.parentIndex);
+  };
 
   removeItself = () => {
     this.removeList(this.parentIndex);
@@ -31,11 +40,15 @@ class List {
       label: 'list-name'
     };
 
-    const listHeader = new Header(listName, removeItself, classNames);
+    const listHeader = new Header(listName, removeItself, classNames, this.editList);
     return listHeader.getHtmlElement();
   }
 
-  calculateHtmlElement() {
+  destroyElementRef = () => {
+    this.htmlElement = null;
+  };
+
+  calculateHtmlElement = () => {
     const element = document.createElement('div');
     element.classList.add('list-container');
 
@@ -50,15 +63,15 @@ class List {
     element.appendChild(listFooterElement);
 
     this.htmlElement = element;
-  }
+  };
 
-  getHtmlElement() {
+  getHtmlElement = () => {
     if(!this.htmlElement){
       this.calculateHtmlElement();
     }
 
     return this.htmlElement;
   }
-}
+};
 
 module.exports = List;

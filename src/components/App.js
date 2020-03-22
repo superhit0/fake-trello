@@ -16,14 +16,28 @@ class App{
     return removeList;
   };
 
+  rerenderListAtIdx = (index) => {
+    const oldElement = this.lists[index].getHtmlElement();
+    this.lists[index].destroyElementRef();
+    this.listContainer.insertBefore(this.lists[index].getHtmlElement(), oldElement);
+    this.listContainer.removeChild(oldElement);
+  };
+
+  editListName = (index) => {
+    const name = prompt('Enter new Name of List: ' + this.lists[index].listName + ": ");
+    if(!name) return;
+    this.lists[index].setListName(name);
+    this.rerenderListAtIdx(index);
+  };
+
   addList = (listName) => {
     if(!listName) return;
-    const newList = new List(listName, this.lists.length, this.listContainer, this.removeList);
+    const newList = new List(listName, this.lists.length, this.listContainer, this.removeList, this.editListName);
     this.listContainer.appendChild(newList.getHtmlElement());
     return this.lists.push(newList);
   };
 
-  getAddHtmlElement() {
+  getAddHtmlElement = () => {
     const element = document.createElement('div');
     element.classList.add('add-list-container');
     element.onclick = () => { this.addList(prompt('Enter new list name:')); }
@@ -31,9 +45,9 @@ class App{
     iTag.className= "fas fa-plus-circle";
     element.appendChild(iTag);
     return element;
-  }
+  };
 
-  calculateHtmlElement() {
+  calculateHtmlElement = () => {
     const element = document.createElement('div');
     element.classList.add('app-container');
 
@@ -46,15 +60,15 @@ class App{
     const addHtmlElement = this.getAddHtmlElement();
     element.appendChild(addHtmlElement);
     this.htmlElement = element;
-  }
+  };
 
-  getHtmlElement() {
+  getHtmlElement = () => {
     if(!this.htmlElement){
       this.calculateHtmlElement();
     }
 
     return this.htmlElement;
   }
-}
+};
 
 module.exports = App;
